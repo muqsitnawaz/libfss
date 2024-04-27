@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(fss)
+project(libfss)
 
 if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug)

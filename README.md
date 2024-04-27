@@ -36,16 +36,24 @@ This will install the library at `/usr/local/include/fss`.
 ## Usage
 
 ```cpp
+#include <fss/fsscontext.hpp>
 #include <fss/fssgenerator.hpp>
 #include <fss/fssevaluator.hpp>
 
-FSSGenerator generator(fss_context);
+const auto fss_context = FSSContext::Create(plain_modulus, 10); // Creates a ring of size 2^10
 
-ReLUKey key_s0, key_s1;
-generator.relu(key_s0, key_s1);
+FSSGenerator generator(fss_context); // Used for generating keys
 
-FSSEvaluator evaluator1(fss_context, 0);
-FSSEvaluator evaluator2(fss_context, 1);
+ReLUKey key_p0, key_p1;
+generator.relu(key_p0, key_p1);
+
+FSSEvaluator evaluator_p0(fss_context, 0); // Used for evaluating the function
+FSSEvaluator evaluator_p1(fss_context, 1); // Used for evaluating the function
+
+const auto output_p0 = evaluator_p0.relu(key_p0, <masked_exchanged_input>);
+const auto output_p1 = evaluator_p1.relu(key_p1, <masked_exchanged_input>);
+
+const auto output = (output_p0 + output_p1) % plain_modulus; // Output of the function
 ```
 
 ## License
