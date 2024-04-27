@@ -1,0 +1,19 @@
+# IDE.
+.idea/
+
+# Build
+bin
+lib
+cmake-build-debug/
+build/
+CMakeFiles/
+Makefile
+CMakeCache.txt
+cmake_install.cmake
+
+# Logs.
+logs/*
+
+# Docs.
+docs/html/
+docs/latex/
